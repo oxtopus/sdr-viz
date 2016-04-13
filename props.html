@@ -72,10 +72,10 @@
                             <td></td>
                         </tr>
                         <tr>
-                            <td class="data-label">sparsity</td>
-                            <td id="sparsity-display" class="data">loading...</td>
+                            <td class="data-label">density</td>
+                            <td id="density-display" class="data">loading...</td>
                             <td>
-                                <div id="sparsity-slider" class="slider"></div>
+                                <div id="density-slider" class="slider"></div>
                             </td>
                         </tr>
                     </tbody>
@@ -138,18 +138,18 @@
         var w = 5;
 
         var $nSlider = $('#n-slider');
-        var $sSlider = $('#sparsity-slider');
+        var $sSlider = $('#density-slider');
 
         function drawSdr(newN, newW) {
             n = newN;
             w = newW;
-            var sparsity = w / n;
-            var sdr = SDR.tools.getRandom(n, sparsity);
+            var density = w / n;
+            var sdr = SDR.tools.getRandom(n, density);
             SDR.draw(sdr, 'sdr', {spartan: true, size: 60});
-            updateDisplayValues(Number(sparsity).toFixed(4), sdr);
+            updateDisplayValues(Number(density).toFixed(4), sdr);
         }
 
-        function updateDisplayValues(sparsity, sdr) {
+        function updateDisplayValues(density, sdr) {
             var uniqueness = SDR.tools.getUniqueness(sdr);
             if (Number.isNaN(uniqueness)) {
                 uniqueness = 'NaN';
@@ -162,8 +162,8 @@
             $('#n-display').html(n);
             $nSlider.slider('value', n);
             $('#w-display').html(w);
-            $('#sparsity-display').html(sparsity);
-            $sSlider.slider('value', sparsity * 100);
+            $('#density-display').html(density);
+            $sSlider.slider('value', density * 100);
         }
 
         function validate(testN, testW) {
@@ -178,7 +178,7 @@
                 var myW = w;
                 if (source == 'n-slider') {
                     myN = value;
-                } else if (source == 'sparsity-slider') {
+                } else if (source == 'density-slider') {
                     myW = Math.floor(n * (value / 100));
                 } else {
                     throw new Error('Unknown event');

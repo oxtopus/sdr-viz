@@ -46,7 +46,7 @@ $(function() {
             var spartan = opts.spartan;
             var stretch = opts.stretch;
             var population = SDR.tools.population(sdr);
-            var sparsity = SDR.tools.sparsity(sdr);
+            var density = SDR.tools.density(sdr);
             var svg = $('<svg id="' + elId + '-svg">');
             var $container = $('#' + elId);
 
@@ -61,7 +61,7 @@ $(function() {
                     }, {
                         label: 'w', data: population
                     }, {
-                        label: 'sparsity', data: sparsity.toFixed(2)
+                        label: 'density', data: density.toFixed(2)
                     }]
                 }));
             }

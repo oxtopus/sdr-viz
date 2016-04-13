@@ -94,13 +94,13 @@
     $(function() {
 
         var length = 1024;
-        var sparsity = 0.1;
+        var density = 0.1;
         var size = 38;
         var leftColor = 'orange';
         var rightColor = 'green';
 
-        var leftsdr = SDR.tools.getRandom(length, sparsity);
-        var rightsdr = SDR.tools.getRandom(length, sparsity);
+        var leftsdr = SDR.tools.getRandom(length, density);
+        var rightsdr = SDR.tools.getRandom(length, density);
 
         var type = 'overlap';
 

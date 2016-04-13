@@ -1,6 +1,6 @@
 $(function() {
 
-    var DEFAULT_SPARSITY = 0.02;
+    var DEFAULT_DENSITY = 0.02;
 
     function getRandomInt(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
@@ -21,19 +21,19 @@ $(function() {
     }
     window.SDR.tools = {
 
-        getRandom: function(size, sparsity) {
+        getRandom: function(size, density) {
             var out = [];
             var randomIndex = undefined;
 
-            if (sparsity == undefined) {
-                sparsity = DEFAULT_SPARSITY;
+            if (density == undefined) {
+                density = DEFAULT_DENSITY;
             }
             // Fill array with zeros.
             while(out.length < size) {
                 out.push(0);
             }
             // If not sparse enough, randomly flip 0 bits to 1.
-            while (this.population(out) / size < sparsity) {
+            while (this.population(out) / size < density) {
                 // Make a random 0 bit into a 1.
                 randomIndex = getRandomInt(0, size);
                 if (out[randomIndex] == 0) {
@@ -95,7 +95,7 @@ $(function() {
             }, 0);
         },
 
-        sparsity: function(sdr) {
+        density: function(sdr) {
             var onBits = _.filter(sdr, function(bit) {
                 return bit == 1;
             }).length;

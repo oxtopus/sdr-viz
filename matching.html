@@ -118,12 +118,12 @@
     $(function () {
 
         var n = 2304;
-        var sparsity = 0.02;
-        var w = Math.floor(n * sparsity);
+        var density = 0.02;
+        var w = Math.floor(n * density);
         var theta = Math.floor(w * .9);
         var noise = 0.02;
 
-        var sdr = SDR.tools.getRandom(n, sparsity);
+        var sdr = SDR.tools.getRandom(n, density);
         var noisySdr = SDR.tools.addNoise(sdr, noise);
 
         var $noiseSlider = $('#noise-slider');
@@ -139,7 +139,7 @@
 
         function updateDisplayValues() {
             var $match = $('#match');
-            $('#sparsity-display').html();
+            $('#density-display').html();
             $('#noise-display').html(noise);
             $('#theta-display').html(theta);
             if (sdrsMatch()) {
@@ -154,7 +154,7 @@
                 var source = event.target.id;
                 if (source == 'noise-slider') {
                     noise = ui.value / 100;
-                    sdr = SDR.tools.getRandom(n, sparsity);
+                    sdr = SDR.tools.getRandom(n, density);
                     noisySdr = SDR.tools.addNoise(sdr, noise);
                     drawSdrs();
                 } else {
